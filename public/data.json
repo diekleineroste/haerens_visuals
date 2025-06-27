@@ -1,0 +1,87 @@
+{
+  "header": {
+    "fileName": "header.png"
+  },
+  "portfolioCards": [
+    {
+      "title": "Brussels Auto Show",
+      "video": true,
+      "photo": true,
+      "graphic": true,
+      "fileName": "car1.png"
+    },
+    {
+      "title": "Red Ant Racing",
+      "video": false,
+      "photo": false,
+      "graphic": true,
+      "fileName": "car2.png"
+    },
+    {
+      "title": "Dikke balzak jens",
+      "video": true,
+      "photo": false,
+      "graphic": false,
+      "fileName": "car3.png"
+    },
+    {
+      "title": "Red Ant Racing",
+      "video": false,
+      "photo": false,
+      "graphic": true,
+      "fileName": "car4.png"
+    },
+    {
+      "title": "KRC Gent",
+      "video": true,
+      "photo": false,
+      "graphic": false,
+      "fileName": "jh.png"
+    }
+  ],
+  "clients": [
+    {
+      "name": "Koninklijke Racing Club Gent",
+      "fileLogo": "logo-test.png",
+      "fileName": "car1.png"
+    },
+    {
+      "name": "Red Ant Racing",
+      "fileLogo": "logo-test.png",
+      "fileName": "car2.png"
+    },
+    {
+      "name": "Het Laatste Nieuws",
+      "fileLogo": "logo-test.png",
+      "fileName": "car3.png"
+    },
+    {
+      "name": "MS Media",
+      "fileLogo": "tester.jpg",
+      "fileName": "car4.png"
+    },
+    {
+      "name": "MS Media1",
+      "fileLogo": "tester.jpg",
+      "fileName": "jh.png"
+    },
+    {
+      "name": "MS Media2",
+      "fileLogo": "tester.jpg",
+      "fileName": "tester.jpg"
+    },
+    {
+      "name": "MS Media3",
+      "fileLogo": "tester.jpg",
+      "fileName": "tester.jpg"
+    },
+    {
+      "name": "MS Media4",
+      "fileLogo": "logo-test.png",
+      "fileName": "test.jpg"
+    }
+  ],
+  "connect": {
+    "fileName": "profile-test.png"
+  }
+}
