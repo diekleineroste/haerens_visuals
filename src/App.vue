@@ -4,6 +4,7 @@ import { onMounted, onUnmounted, ref, computed, nextTick } from 'vue';
 import { Data } from "@/types";
 import PortfolioSection from "@/components/OrganismPortfolio.vue";
 import ClientsSection from "@/components/OrganismClients.vue";
+import ConnectSection from "@/components/OrganismConnect.vue";
 
 const data = ref<Data>(null);
 
@@ -55,15 +56,13 @@ onMounted(async () => {
 
     <ClientsSection v-if="data?.clients" :data="data.clients"/>
 
-    <section id="contact">
-      test
-    </section>
+    <ConnectSection v-if="data?.connect" :data="data.connect"/>
   </main>
 
   <footer>
     <div>
       <p>© 2025</p>
-      <p>made with and by <a target="_blank" href="laurensrousseau.com">rouxdesign</a></p>
+      <p>website made with and by <a target="_blank" href="https://laurensrousseau.com">rouxdesign</a></p>
     </div>
   </footer>
 </template>

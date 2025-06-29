@@ -47,6 +47,12 @@
   text-transform: uppercase;
   color: var(--white);
   //border: 1px solid rgba(0, 255, 0, 0.2);
+
+  :focus {
+    outline: 2px solid var(--white);
+    offset: 1rem;
+    border-radius: .2rem;
+  }
 }
 
 body {
@@ -76,10 +82,18 @@ body {
   font-optical-sizing: auto;
 
   &-s16 {
+    &-n300 {
+      font-weight: 300;
+      font-style: normal;
+      line-height: 1.2;
+      text-transform: none;
+    }
+
     &-n400 {
       font-weight: 400;
       font-style: normal;
       line-height: 1.2;
+      text-transform: none;
     }
 
     &-U400 {
@@ -125,5 +139,42 @@ body {
   border: 1px solid var(--white);
   width: fit-content;
   line-height: .8;
+
+  &-form {
+    border: 2px solid var(--gray-500);
+    color: var(--gray-500);
+    cursor: pointer;
+
+    &:has(input[type=checkbox]:checked), &:has(input[type=radio]:checked) {
+      color: var(--white);
+      border-color: var(--white);
+    }
+  }
 }
 
+input[type=checkbox], input[type=radio] {
+  display: none;
+}
+
+.input {
+  background-color: var(--black);
+  color: var(--white);
+  border: 2px solid var(--gray-500);
+  border-radius: .4rem;
+  padding: .8rem;
+  font-weight: 500;
+}
+
+input[type=submit] {
+  background-color: var(--primary);
+  padding: .8rem;
+  border-radius: .4rem;
+  border: none;
+  cursor: pointer;
+}
+
+.input:focus {
+  color: var(--white);
+  border-color: var(--white);
+  outline: none;
+}

@@ -18,6 +18,8 @@ interface Client {
 
 interface Connect {
     fileName: string;
+    offers: string[];
+    priceRanges: string[];
 }
 
 interface Data {
@@ -27,4 +29,4 @@ interface Data {
     connect: Connect;
 }
 
-export { Data, PortfolioCard, Client }
+export { Data, PortfolioCard, Client, Connect }

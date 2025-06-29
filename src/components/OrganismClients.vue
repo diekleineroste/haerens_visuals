@@ -124,7 +124,7 @@ section#clients {
         justify-content: center;
         width: 50vw;
         height: 50vh;
-        margin-top: 40vh;
+        margin-top: 30vh;
         margin-left: 25%;
 
         img {
