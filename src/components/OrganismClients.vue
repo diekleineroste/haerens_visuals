@@ -114,6 +114,7 @@ section#clients {
       pointer-events: none;
       transform: translate(-50%, -50%);
       overflow: hidden;
+      z-index: 1;
 
       div {
         position: absolute;

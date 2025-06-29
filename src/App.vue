@@ -62,7 +62,7 @@ onMounted(async () => {
   <footer>
     <div>
       <p>© 2025</p>
-      <p>website made with and by <a target="_blank" href="https://laurensrousseau.com">rouxdesign</a></p>
+      <p>website by <a target="_blank" href="https://laurensrousseau.com">rouxdesign</a></p>
     </div>
   </footer>
 </template>

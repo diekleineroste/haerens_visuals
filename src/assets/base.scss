@@ -102,6 +102,13 @@ body {
       text-transform: uppercase;
     }
 
+    &-n500 {
+      font-weight: 500;
+      font-style: normal;
+      line-height: 1.2;
+      text-transform: none;
+    }
+
     &-U700 {
       font-weight: 700;
       font-style: normal;
@@ -163,6 +170,16 @@ input[type=checkbox], input[type=radio] {
   border-radius: .4rem;
   padding: .8rem;
   font-weight: 500;
+
+  &:focus {
+    color: var(--white);
+    border-color: var(--white);
+    outline: none;
+  }
+
+  &:not(:placeholder-shown) {
+    border-color: var(--white);
+  }
 }
 
 input[type=submit] {
@@ -173,8 +190,6 @@ input[type=submit] {
   cursor: pointer;
 }
 
-.input:focus {
-  color: var(--white);
-  border-color: var(--white);
-  outline: none;
+textarea {
+  resize: vertical;
 }

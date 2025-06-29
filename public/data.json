@@ -8,35 +8,40 @@
       "video": true,
       "photo": true,
       "graphic": true,
-      "fileName": "car1.png"
-    },
-    {
-      "title": "Red Ant Racing",
-      "video": false,
-      "photo": false,
-      "graphic": true,
-      "fileName": "car2.png"
+      "fileName": "car1.png",
+      "isVideo": false
     },
     {
       "title": "Dikke balzak jens",
       "video": true,
       "photo": false,
       "graphic": false,
-      "fileName": "car3.png"
+      "fileName": "car3.png",
+      "isVideo": false
     },
     {
       "title": "Red Ant Racing",
       "video": false,
       "photo": false,
       "graphic": true,
-      "fileName": "car4.png"
+      "fileName": "car4.png",
+      "isVideo": false
+    },
+    {
+      "title": "Red Ant Racing",
+      "video": true,
+      "photo": true,
+      "graphic": false,
+      "fileName": "video.mp4",
+      "isVideo": true
     },
     {
       "title": "KRC Gent",
       "video": true,
       "photo": false,
       "graphic": false,
-      "fileName": "jh.png"
+      "fileName": "jh.png",
+      "isVideo": false
     }
   ],
   "clients": [
@@ -68,17 +73,17 @@
     {
       "name": "MS Media2",
       "fileLogo": "tester.jpg",
-      "fileName": "tester.jpg"
+      "fileName": "car1.png"
     },
     {
       "name": "MS Media3",
       "fileLogo": "tester.jpg",
-      "fileName": "tester.jpg"
+      "fileName": "jh_profile.png"
     },
     {
       "name": "MS Media4",
       "fileLogo": "logo-test.png",
-      "fileName": "test.jpg"
+      "fileName": "header.png"
     }
   ],
   "connect": {

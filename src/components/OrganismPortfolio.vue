@@ -89,7 +89,8 @@ onUnmounted(() => {
         <div id="portfolio-cards" ref="scrollSectionRef" class="hybrid-scroll" :style="[(isLargeScreen ? transformStyleLarge : transformStyleSmall), isLargeScreen ? '' : 'top:' + scrollValue + '%;']" >
 
         <div v-for="(card, idx) in data" :key="idx" class="portfolio-card">
-          <img :src="`/assets/${card.fileName}`" :alt="card.title">
+          <img v-if="!card.isVideo" :src="`/assets/${card.fileName}`" :alt="card.title" class="card-img">
+          <video v-else :src="`/assets/${card.fileName}`" autoplay loop preload="metadata" muted class="card-img"></video>
           <div class="card-overlay">
             <div class="container container-label">
               <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -243,7 +244,7 @@ onUnmounted(() => {
             }
           }
 
-          img {
+          .card-img {
             height: 100%;
             width: 100%;
             border-radius: 1rem;
