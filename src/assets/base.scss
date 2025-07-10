@@ -47,6 +47,7 @@
   text-transform: uppercase;
   color: var(--white);
   //border: 1px solid rgba(0, 255, 0, 0.2);
+  scroll-behavior: smooth;
 
   :focus {
     outline: 2px solid var(--white);
@@ -58,7 +59,21 @@
 body {
   background: var(--black);
   margin-bottom: 2rem;
-  z-index: 1;
+}
+
+section {
+  padding: 0 .8rem;
+  margin-bottom: 8rem;
+
+  &:last-of-type {
+    margin-bottom: 0;
+  }
+}
+
+@media screen and (width >= 55rem) {
+  section {
+    padding: 0 2rem;
+  }
 }
 
 .playfair {
@@ -192,4 +207,8 @@ input[type=submit] {
 
 textarea {
   resize: vertical;
+}
+
+.no-scroll {
+  overflow: hidden;
 }

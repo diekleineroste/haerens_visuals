@@ -9,6 +9,12 @@ interface PortfolioCard {
     graphic: boolean;
     fileName: string;
     isVideo: boolean;
+    gallery: GalleryItem[];
+}
+
+interface GalleryItem {
+    isVideo: boolean;
+    fileName: string;
 }
 
 interface Client {
@@ -30,4 +36,4 @@ interface Data {
     connect: Connect;
 }
 
-export { Data, PortfolioCard, Client, Connect }
+export { Data, PortfolioCard, Client, Connect, GalleryItem };

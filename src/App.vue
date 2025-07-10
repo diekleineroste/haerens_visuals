@@ -5,6 +5,7 @@ import { Data } from "@/types";
 import PortfolioSection from "@/components/OrganismPortfolio.vue";
 import ClientsSection from "@/components/OrganismClients.vue";
 import ConnectSection from "@/components/OrganismConnect.vue";
+import MoleculeLoading from "@/components/MoleculeLoading.vue";
 
 const data = ref<Data>(null);
 
@@ -28,10 +29,12 @@ onMounted(async () => {
 
 <template>
   <header>
+    <MoleculeLoading></MoleculeLoading>
+
     <div class="hero" :style="heroBackgroundStyle">
       <div>
         <h1 class="display playfair">Gallery</h1>
-        <AtomLogo class="logo"/>
+        <AtomLogo :border="true" class="logo"/>
       </div>
       <p class="introductory-text">
         i craft striking <span class="montserrat montserrat-s16 montserrat-s16-i800">VISUALS</span><br>
@@ -111,9 +114,10 @@ header {
         position: absolute;
         top: 50%;
         left: 50%;
-        transform: translate(-50%, -50%);
         width: 78%;
         height: 54rem;
+        fill: var(--primary);
+        transform: translate(-50%, -50%);
         z-index: -1;
         pointer-events: none;
       }
@@ -149,14 +153,6 @@ header {
 
 main {
   background: var(--black);
-  section {
-    padding: 0 .8rem;
-    margin-bottom: 8rem;
-
-    &:last-child {
-      margin-bottom: 0;
-    }
-  }
 }
 
 footer {

@@ -56,15 +56,17 @@ onBeforeUnmount(() => {
       past & present<br>
       clients
     </h2>
+    <div ref="clientContainerRef" class="container">
+      <img v-for="(client, idx) in data" :key="idx" :src="`./assets/${client.fileLogo}`" :alt="client.name">
+    </div>
+  </section>
+  <Teleport to="body">
     <transition-group v-if="isLargeScreen" name="show" tag="div" class="image-container">
       <div v-for="(img, idx) in targetImages" :key="idx + img.name + date + date.getMilliseconds()" :style="{zIndex: -idx}">
         <img :src="`./assets/${img.fileName}`" :alt="img.name">
       </div>
     </transition-group>
-    <div ref="clientContainerRef" class="container">
-      <img v-for="(client, idx) in data" :key="idx" :src="`./assets/${client.fileLogo}`" :alt="client.name">
-    </div>
-  </section>
+  </Teleport>
 </template>
 
 <style scoped lang="scss">
@@ -105,38 +107,6 @@ section#clients {
       align-self: unset;
     }
 
-    .image-container {
-      position: fixed;
-      top: 50%;
-      left: 50%;
-      width: 100vw;
-      height: 100vh;
-      pointer-events: none;
-      transform: translate(-50%, -50%);
-      overflow: hidden;
-      z-index: 1;
-
-      div {
-        position: absolute;
-        top: 0;
-        left: 0;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        width: 50vw;
-        height: 50vh;
-        margin-top: 30vh;
-        margin-left: 25%;
-
-        img {
-          max-height: 100%;
-          max-width: 100%;
-          object-fit: contain;
-          border-radius: .8rem;
-        }
-      }
-    }
-
     .container {
       flex-wrap: wrap-reverse;
       row-gap: 2rem;
@@ -145,6 +115,38 @@ section#clients {
 
       img {
         height: 4rem;
+      }
+    }
+  }
+
+  .image-container {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    width: 100vw;
+    height: 100vh;
+    pointer-events: none;
+    transform: translate(-50%, -50%);
+    overflow: hidden;
+    z-index: 1;
+
+    div {
+      position: absolute;
+      top: 0;
+      left: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 50vw;
+      height: 50vh;
+      margin-top: 30vh;
+      margin-left: 25%;
+
+      img {
+        max-height: 100%;
+        max-width: 100%;
+        object-fit: contain;
+        border-radius: .8rem;
       }
     }
   }

@@ -9,15 +9,67 @@
       "photo": true,
       "graphic": true,
       "fileName": "car1.png",
-      "isVideo": false
+      "isVideo": false,
+      "gallery": [
+        {
+          "isVideo": false,
+          "fileName": "car1.png"
+        },
+        {
+          "isVideo": false,
+          "fileName": "car3.png"
+        },
+        {
+          "isVideo": false,
+          "fileName": "car2.png"
+        },
+        {
+          "isVideo": false,
+          "fileName": "car4.png"
+        },
+        {
+          "isVideo": false,
+          "fileName": "jh.png"
+        },
+        {
+          "isVideo": false,
+          "fileName": "jh_profile.png"
+        }
+      ]
     },
     {
       "title": "Dikke balzak jens",
       "video": true,
       "photo": false,
       "graphic": false,
-      "fileName": "car3.png",
-      "isVideo": false
+      "fileName": "video2.mp4",
+      "isVideo": true,
+      "gallery": [
+        {
+          "isVideo": false,
+          "fileName": "car1.png"
+        },
+        {
+          "isVideo": false,
+          "fileName": "car3.png"
+        },
+        {
+          "isVideo": false,
+          "fileName": "car2.png"
+        },
+        {
+          "isVideo": false,
+          "fileName": "car4.png"
+        },
+        {
+          "isVideo": false,
+          "fileName": "jh.png"
+        },
+        {
+          "isVideo": false,
+          "fileName": "jh_profile.png"
+        }
+      ]
     },
     {
       "title": "Red Ant Racing",
@@ -25,7 +77,67 @@
       "photo": false,
       "graphic": true,
       "fileName": "car4.png",
-      "isVideo": false
+      "isVideo": false,
+      "gallery": [
+        {
+          "isVideo": false,
+          "fileName": "car1.png"
+        },
+        {
+          "isVideo": false,
+          "fileName": "car3.png"
+        },
+        {
+          "isVideo": false,
+          "fileName": "car2.png"
+        },
+        {
+          "isVideo": false,
+          "fileName": "car4.png"
+        },
+        {
+          "isVideo": false,
+          "fileName": "jh.png"
+        },
+        {
+          "isVideo": false,
+          "fileName": "jh_profile.png"
+        }
+      ]
+    },
+    {
+      "title": "KRC Gent",
+      "video": true,
+      "photo": false,
+      "graphic": false,
+      "fileName": "car2.png",
+      "isVideo": false,
+      "gallery": [
+        {
+          "isVideo": false,
+          "fileName": "car1.png"
+        },
+        {
+          "isVideo": false,
+          "fileName": "car3.png"
+        },
+        {
+          "isVideo": false,
+          "fileName": "car2.png"
+        },
+        {
+          "isVideo": false,
+          "fileName": "car4.png"
+        },
+        {
+          "isVideo": false,
+          "fileName": "jh.png"
+        },
+        {
+          "isVideo": false,
+          "fileName": "jh_profile.png"
+        }
+      ]
     },
     {
       "title": "Red Ant Racing",
@@ -33,15 +145,33 @@
       "photo": true,
       "graphic": false,
       "fileName": "video.mp4",
-      "isVideo": true
-    },
-    {
-      "title": "KRC Gent",
-      "video": true,
-      "photo": false,
-      "graphic": false,
-      "fileName": "jh.png",
-      "isVideo": false
+      "isVideo": true,
+      "gallery": [
+        {
+          "isVideo": false,
+          "fileName": "car1.png"
+        },
+        {
+          "isVideo": false,
+          "fileName": "car3.png"
+        },
+        {
+          "isVideo": false,
+          "fileName": "car2.png"
+        },
+        {
+          "isVideo": false,
+          "fileName": "car4.png"
+        },
+        {
+          "isVideo": false,
+          "fileName": "jh.png"
+        },
+        {
+          "isVideo": false,
+          "fileName": "jh_profile.png"
+        }
+      ]
     }
   ],
   "clients": [
