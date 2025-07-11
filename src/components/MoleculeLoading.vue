@@ -155,7 +155,7 @@ watch(started, (hasStarted) => {
 
 .container-logo {
   align-self: flex-start;
-  transform: translateX(-100vw);
+  transform: translateX(-120%);
   transform-origin: left center;
   will-change: transform;
 
@@ -198,7 +198,7 @@ watch(started, (hasStarted) => {
   }
 
   .container-logo {
-    transform: translateX(-120%);
+    transform: translateX(-100vw);
 
     .logo {
       width: fit-content;

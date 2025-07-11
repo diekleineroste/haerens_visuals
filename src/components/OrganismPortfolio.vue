@@ -494,7 +494,9 @@ const navigateGallery = (direction: 'prev' | 'next') => {
   top: 0;
   left: 0;
   width: 100vw;
+  width: 100svw;
   height: 100vh;
+  height: 100svh;
   z-index: 2;
   background-color: var(--black);
   overflow-x: hidden;
