@@ -1,14 +1,27 @@
 # haerens_visuals
 
-This template should help get you started developing with Vue 3 in Vite.
+This is the website made for the videographer/photographer Jaron Haerens.
+Beneath is some valuable info for editing the data.json file and setting up the project yourself.
 
-## Recommended IDE Setup
+## Data.json Structure Guide
 
-[VSCode](https://code.visualstudio.com/) + [Volar](https://marketplace.visualstudio.com/items?itemName=Vue.volar) (and disable Vetur).
+### Portfolio Cards
+- `title`: String - The project title
+- `video`: Boolean - Whether this project includes video work*
+- `photo`: Boolean - Whether this project includes photography*
+- `graphic`: Boolean - Whether this project includes graphic design*
+- `fileName`: String - Main image/video file for the project
+- `isVideo`: Boolean - Whether the main file is a video*
+- `gallery`: Array - Additional images/videos for the project<br>
+<sub>* yes = `true`| no = `false`</sub>
 
-## Customize configuration
+### File Requirements
+- Images: .png, .jpg, .jpeg .gif .webp supported
+- Videos: .mp4 .mov .avi supported
+- All files should be in the public assets directory as referenced
 
-See [Vite Configuration Reference](https://vite.dev/config/).
+### Worst case scenario
+Copy `data.json.template` to `data.json` and replace all the ALL_CAPS placeholders with actual content
 
 ## Project Setup
 

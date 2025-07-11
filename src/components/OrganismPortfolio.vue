@@ -1,15 +1,18 @@
 <script setup lang="ts">
 import { PortfolioCard, GalleryItem } from "@/types";
-import { computed, nextTick, onMounted, onUnmounted, ref, watch } from "vue";
+import {computed, nextTick, onBeforeMount, onMounted, onUnmounted, ref, watch} from "vue";
 
 const props = defineProps<{
   data: PortfolioCard[]
 }>()
 
-const VIEWPORT_SIZE = 40;
 const LARGE_SCREEN_BREAKPOINT = '(min-width: 55rem)';
 
 const isLargeScreen = ref(false);
+const viewportSize = computed(() => {
+  return isLargeScreen.value ? 40 : 60
+})
+    // ref(isLargeScreen.value ? 40 : 60);
 const stickyViewRef = ref<HTMLElement>();
 const scrollValue = ref(0);
 const galleryState = ref({
@@ -23,20 +26,25 @@ const galleryState = ref({
 let mediaQuery: MediaQueryList | null = null;
 let rafId: number | null = null;
 
+onBeforeMount(() => {
+  mediaQuery = window.matchMedia(LARGE_SCREEN_BREAKPOINT);
+  isLargeScreen.value = mediaQuery.matches;
+})
+
 const sectionHeight = computed(() =>
-    props.data.length ? `${props.data.length * VIEWPORT_SIZE}vh` : '0vh'
+    props.data.length ? `${props.data.length * viewportSize.value}vh` : '0vh'
 );
 
 const scroll = computed(() =>
     props.data.length
         ? isLargeScreen.value
-            ? `calc(${props.data.length * VIEWPORT_SIZE}vw - 4rem)`
-            : `${props.data.length * VIEWPORT_SIZE}vh`
+            ? `calc(${props.data.length * viewportSize.value}vw - 4rem)`
+            : `${props.data.length * viewportSize.value}vh`
         : '0vw'
 );
 
 const maxScrollValue = computed(() =>
-    props.data.length ? (props.data.length * VIEWPORT_SIZE) - 100 : 0
+    props.data.length ? (props.data.length * viewportSize.value) - 100 : 0
 );
 
 const transformStyle = computed(() => {
@@ -135,8 +143,6 @@ watch(() => galleryState.value.currentIdx, (newIdx) => {
 
 onMounted(() => {
   nextTick(() => {
-    mediaQuery = window.matchMedia(LARGE_SCREEN_BREAKPOINT);
-    isLargeScreen.value = mediaQuery.matches;
     mediaQuery.addEventListener('change', handleMediaChange);
     window.addEventListener('scroll', handleScroll, { passive: true });
   });
@@ -226,7 +232,7 @@ const navigateGallery = (direction: 'prev' | 'next') => {
   <Teleport to="body">
     <div v-show="galleryState.isVisible" class="gallery-container">
       <div class="gallery-indicator">
-        <h2 class="montserrat-s16-U700">{{ data[galleryState.currentIdx]?.title }}</h2>
+        <h2 class="montserrat-s24 montserrat-s24-U500">{{ data[galleryState.currentIdx]?.title }}</h2>
       </div>
 
       <div class="gallery-images">
@@ -373,6 +379,8 @@ const navigateGallery = (direction: 'prev' | 'next') => {
         .portfolio-card {
           position: relative;
           height: 100%;
+          max-height: fit-content;
+          width: 100%;
           min-width: 20rem;
           cursor: pointer;
 
@@ -508,13 +516,13 @@ const navigateGallery = (direction: 'prev' | 'next') => {
       width: 100%;
 
       &.opacity {
-        opacity: .5;
+        opacity: .3;
         height: 10rem;
         cursor: pointer;
         transition: opacity 0.3s ease;
 
         &:hover {
-          opacity: 0.8;
+          opacity: 0.6;
         }
 
         .card-img {
@@ -597,10 +605,6 @@ const navigateGallery = (direction: 'prev' | 'next') => {
       cursor: pointer;
       font-family: inherit;
       transition: transform 0.2s ease;
-
-      &:hover {
-        transform: scale(1.05);
-      }
     }
   }
 }
@@ -621,6 +625,9 @@ const navigateGallery = (direction: 'prev' | 'next') => {
           gap: 5vw;
 
           .portfolio-card {
+            max-height: unset;
+            width: unset;
+
             .card-overlay {
               .container {
                 padding: 1rem;

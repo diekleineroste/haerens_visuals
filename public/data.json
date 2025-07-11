@@ -1,4 +1,5 @@
 {
+  "$schema": "./data.schema.json",
   "header": {
     "fileName": "header.png"
   },

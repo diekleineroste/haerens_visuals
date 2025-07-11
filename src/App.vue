@@ -28,7 +28,7 @@ onMounted(async () => {
 </script>
 
 <template>
-  <header>
+  <header id="header">
     <MoleculeLoading></MoleculeLoading>
 
     <div class="hero" :style="heroBackgroundStyle">
@@ -108,6 +108,7 @@ header {
         font-weight: 500;
         font-style: italic;
         text-transform: none;
+        user-select: none;
       }
 
       .logo {

@@ -1,0 +1,132 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Portfolio Website Data Schema",
+  "description": "Schema for validating portfolio website data structure",
+  "type": "object",
+  "required": ["header", "portfolioCards", "clients", "connect"],
+  "properties": {
+    "header": {
+      "type": "object",
+      "description": "Header section configuration",
+      "required": ["fileName"],
+      "properties": {
+        "fileName": {
+          "type": "string",
+          "description": "Header image file name (e.g., 'header.png')",
+          "pattern": "\\.(png|jpg|jpeg|gif|webp)$"
+        }
+      }
+    },
+    "portfolioCards": {
+      "type": "array",
+      "description": "Array of portfolio project cards",
+      "minItems": 1,
+      "items": {
+        "type": "object",
+        "required": ["title", "video", "photo", "graphic", "fileName", "isVideo", "gallery"],
+        "properties": {
+          "title": {
+            "type": "string",
+            "description": "Project title",
+            "minLength": 1
+          },
+          "video": {
+            "type": "boolean",
+            "description": "Whether this project includes video work"
+          },
+          "photo": {
+            "type": "boolean",
+            "description": "Whether this project includes photography"
+          },
+          "graphic": {
+            "type": "boolean",
+            "description": "Whether this project includes graphic design"
+          },
+          "fileName": {
+            "type": "string",
+            "description": "Main project file name",
+            "pattern": "\\.(png|jpg|jpeg|gif|webp|mp4|mov|avi)$"
+          },
+          "isVideo": {
+            "type": "boolean",
+            "description": "Whether the main file is a video"
+          },
+          "gallery": {
+            "type": "array",
+            "description": "Gallery items for this project",
+            "items": {
+              "type": "object",
+              "required": ["isVideo", "fileName"],
+              "properties": {
+                "isVideo": {
+                  "type": "boolean",
+                  "description": "Whether this gallery item is a video"
+                },
+                "fileName": {
+                  "type": "string",
+                  "description": "Gallery file name",
+                  "pattern": "\\.(png|jpg|jpeg|gif|webp|mp4|mov|avi)$"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "clients": {
+      "type": "array",
+      "description": "Array of client information",
+      "items": {
+        "type": "object",
+        "required": ["name", "fileLogo", "fileName"],
+        "properties": {
+          "name": {
+            "type": "string",
+            "description": "Client name",
+            "minLength": 1
+          },
+          "fileLogo": {
+            "type": "string",
+            "description": "Client logo file name",
+            "pattern": "\\.(png|jpg|jpeg|gif|webp|svg)$"
+          },
+          "fileName": {
+            "type": "string",
+            "description": "Client work sample file name",
+            "pattern": "\\.(png|jpg|jpeg|gif|webp|mp4|mov|avi)$"
+          }
+        }
+      }
+    },
+    "connect": {
+      "type": "object",
+      "description": "Contact/connect section configuration",
+      "required": ["fileName", "offers", "priceRanges"],
+      "properties": {
+        "fileName": {
+          "type": "string",
+          "description": "Profile picture file name",
+          "pattern": "\\.(png|jpg|jpeg|gif|webp)$"
+        },
+        "offers": {
+          "type": "array",
+          "description": "Services offered",
+          "items": {
+            "type": "string",
+            "enum": ["video", "photo", "graphic design", "other"]
+          },
+          "minItems": 1
+        },
+        "priceRanges": {
+          "type": "array",
+          "description": "Available price ranges",
+          "items": {
+            "type": "string",
+            "pattern": "^€\\d+\\s*-\\s*€\\d+$|^€\\d+\\+$"
+          },
+          "minItems": 1
+        }
+      }
+    }
+  }
+}
