@@ -135,7 +135,9 @@ watch(started, (hasStarted) => {
   top: 0;
   left: 0;
   width: 100vw;
+  width: 100svw;
   height: 100vh;
+  height: 100svh;
   background: var(--black);
   z-index: 99;
   display: flex;
@@ -153,8 +155,9 @@ watch(started, (hasStarted) => {
 
 .container-logo {
   align-self: flex-start;
-  transform: translateX(-120%);
+  transform: translateX(-100vw);
   transform-origin: left center;
+  will-change: transform;
 
   .logo {
     width: 80vw;
