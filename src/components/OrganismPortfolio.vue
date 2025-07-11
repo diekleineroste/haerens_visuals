@@ -91,11 +91,15 @@ const updateGalleryIndices = (currentIdx: number) => {
 const showGallery = (card: PortfolioCard, idx: number) => {
   const galleryElement = document.querySelector('.gallery-container') as HTMLElement;
 
-  if (galleryElement && isLargeScreen) {
+  if (galleryElement && isLargeScreen.value) {
     galleryElement.scrollLeft = 0;
-    galleryElement.scrollTop = 0;
     galleryElement.addEventListener('wheel', transformScroll, { passive: false });
     galleryElement.addEventListener('touchmove', transformScroll, { passive: false });
+  }
+
+  if (!isLargeScreen.value) {
+    const galleryImages = galleryElement.querySelector('.gallery-images');
+    galleryImages.scrollTop = 0;
   }
 
   document.body.classList.add('no-scroll');
@@ -117,6 +121,7 @@ const hideGallery = () => {
   const galleryElement = document.querySelector('.gallery-container') as HTMLElement;
   if (galleryElement) {
     galleryElement.scrollLeft = 0;
+    galleryElement.scrollTop = 0;
     galleryElement.removeEventListener('wheel', transformScroll);
     galleryElement.removeEventListener('touchmove', transformScroll);
   }
