@@ -1,0 +1,80 @@
+{
+  "$schema": "./data.schema.json",
+
+  "// HEADER SECTION": "Configure the main header image",
+  "header": {
+    "fileName": "PUT_YOUR_HEADER_IMAGE_HERE.png"
+  },
+
+  "// PORTFOLIO CARDS": "Add your projects here - each card represents one project",
+  "portfolioCards": [
+    {
+      "title": "REPLACE_WITH_PROJECT_TITLE",
+      "video": true,
+      "photo": false,
+      "graphic": true,
+      "fileName": "MAIN_PROJECT_IMAGE_OR_VIDEO.png",
+      "isVideo": false,
+      "gallery": [
+        {
+          "isVideo": false,
+          "fileName": "GALLERY_IMAGE_1.png"
+        },
+        {
+          "isVideo": true,
+          "fileName": "GALLERY_VIDEO_1.mp4"
+        },
+        {
+          "isVideo": false,
+          "fileName": "GALLERY_IMAGE_2.jpg"
+        }
+      ]
+    },
+    {
+      "title": "SECOND_PROJECT_TITLE",
+      "video": false,
+      "photo": true,
+      "graphic": false,
+      "fileName": "SECOND_PROJECT_MAIN_FILE.mp4",
+      "isVideo": true,
+      "gallery": [
+        {
+          "isVideo": false,
+          "fileName": "SECOND_PROJECT_GALLERY_1.png"
+        }
+      ]
+    }
+  ],
+
+  "// CLIENTS SECTION": "Add your clients/companies you've worked with",
+  "clients": [
+    {
+      "name": "CLIENT_NAME_HERE",
+      "fileLogo": "CLIENT_LOGO_FILE.png",
+      "fileName": "WORK_SAMPLE_FOR_CLIENT.jpg"
+    },
+    {
+      "name": "ANOTHER_CLIENT_NAME",
+      "fileLogo": "ANOTHER_CLIENT_LOGO.svg",
+      "fileName": "ANOTHER_WORK_SAMPLE.png"
+    }
+  ],
+
+  "// CONNECT SECTION": "Configure your contact/about section",
+  "connect": {
+    "fileName": "YOUR_PROFILE_PICTURE.jpg",
+    "offers": [
+      "video",
+      "photo",
+      "graphic design",
+      "web development",
+      "other"
+    ],
+    "priceRanges": [
+      "€500 - €1000",
+      "€1000 - €1500",
+      "€1500 - €2000",
+      "€2000+"
+    ]
+  }
+}
