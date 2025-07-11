@@ -212,13 +212,14 @@ watch(started, (hasStarted) => {
 .container-loading.started {
   .container-logo {
     animation: slideInLeft 1.5s ease-in-out forwards;
+    -webkit-animation: slideInLeft 1.5s ease-in-out backwards;
   }
 
   .container-img {
     animation: expandHeight 1.5s ease-in-out 1.5s forwards;
 
     img {
-      animation: expandToFullscreen 1.5s ease-in-out 3s forwards;
+      //animation: expandToFullscreen 1.5s ease-in-out 3s forwards;
     }
   }
 
@@ -226,7 +227,7 @@ watch(started, (hasStarted) => {
     animation: slideInRight 1.5s ease-in-out forwards;
   }
 
-  animation: masterTimeline 5s ease-in-out forwards;
+  //animation: masterTimeline 5s ease-in-out forwards;
 }
 
 @keyframes slideInLeft {
