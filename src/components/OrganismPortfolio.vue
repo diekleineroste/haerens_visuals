@@ -93,6 +93,7 @@ const showGallery = (card: PortfolioCard, idx: number) => {
 
   if (galleryElement && isLargeScreen) {
     galleryElement.scrollLeft = 0;
+    galleryElement.scrollTop = 0;
     galleryElement.addEventListener('wheel', transformScroll, { passive: false });
     galleryElement.addEventListener('touchmove', transformScroll, { passive: false });
   }

@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import {Connect} from "@/types";
 import {EmailService} from "@/mailService";
-import {ref} from "vue";
+import {computed, ref} from "vue";
 
 defineProps<{
   data: Connect
@@ -17,21 +17,108 @@ const description = ref<string>('');
 const success = ref<boolean>(false);
 const error = ref<boolean>(false);
 
+// Validation states
+const nameError = ref<string>('');
+const emailError = ref<string>('');
+const offerError = ref<string>('');
+const descriptionError = ref<string>('');
+
+const text = computed(() => {
+  return `${name.value} - ${email.value} ${(telephone.value ? ' - ' + telephone.value : '')} \n BUDGET: ${budget.value}\n SERVICES: ${offer.value.join(', ')} \n DESCRIPTION:\n ${description.value}`
+})
+
+// Email validation regex
+const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+// Validation functions
+const validateName = () => {
+  if (!name.value.trim()) {
+    nameError.value = 'Name is required';
+    return false;
+  }
+  if (name.value.trim().length < 2) {
+    nameError.value = 'Name must be at least 2 characters';
+    return false;
+  }
+  nameError.value = '';
+  return true;
+}
+
+const validateEmail = () => {
+  if (!email.value.trim()) {
+    emailError.value = 'Email is required';
+    return false;
+  }
+  if (!emailRegex.test(email.value.trim())) {
+    emailError.value = 'Please enter a valid email address';
+    return false;
+  }
+  emailError.value = '';
+  return true;
+}
+
+const validateOffer = () => {
+  if (offer.value.length === 0) {
+    offerError.value = 'Please select at least one service';
+    return false;
+  }
+  offerError.value = '';
+  return true;
+}
+
+const validateDescription = () => {
+  if (!description.value.trim()) {
+    descriptionError.value = 'Project description is required';
+    return false;
+  }
+  if (description.value.trim().length < 10) {
+    descriptionError.value = 'Description must be at least 10 characters';
+    return false;
+  }
+  descriptionError.value = '';
+  return true;
+}
+
+const validateForm = () => {
+  const isNameValid = validateName();
+  const isEmailValid = validateEmail();
+  const isOfferValid = validateOffer();
+  const isDescriptionValid = validateDescription();
+
+  return isNameValid && isEmailValid && isOfferValid && isDescriptionValid;
+}
+
 const handleSubmit = async (event: Event) => {
   event.preventDefault();
 
-  try {
-    const res = await EmailService.sendEmail({
-      to: 'jaron@haerensvisuals.com',
-      subject: 'WEB - ' + name.value,
-      html: '<strong>'+ name.value + ' - ' + email.value + (telephone.value ? ' - ' + telephone.value : '') + '</strong>' +
-          '<p>Budget: ' + budget.value + '</p>' +
-          '<p>Services: ' + offer.value.join(', ') + '</p>' +
-          '<p>Description: </p>' +
-          '<p>' + description.value + '</p>',
-      text: `${name.value} - ${email.value} ${(telephone.value ? ' - ' + telephone.value : '')} \n Budget: ${budget.value}\n Services: ${offer.value.join(', ')} \n Description:\n ${description.value}`
-    });
+  // Validate form before submission
+  if (!validateForm()) {
+    return;
+  }
 
+  // Since backend is not available, use mailto as fallback
+  const subject = encodeURIComponent('WEB - ' + name.value);
+  const body = encodeURIComponent(
+      `Name: ${name.value}\n` +
+      `Email: ${email.value}\n` +
+      `Phone: ${telephone.value || 'Not provided'}\n` +
+      `Budget: ${budget.value || 'Not specified'}\n` +
+      `Services: ${offer.value.join(', ')}\n` +
+      `Description:\n${description.value}`
+  );
+
+  const mailtoUrl = `mailto:jaron@haerensvisuals.com?subject=${subject}&body=${body}`;
+
+  try {
+    window.location.href = mailtoUrl;
+
+    // Show success message
+    success.value = true;
+    setTimeout(() => {
+      success.value = false;
+    }, 3000);
+
+    // Reset form after successful submission
     name.value = '';
     email.value = '';
     telephone.value = '';
@@ -39,15 +126,17 @@ const handleSubmit = async (event: Event) => {
     offer.value = [];
     description.value = '';
 
-    success.value = res.success;
-    setTimeout(() => {
-      success.value = false;
-    }, 3000)
+    // Clear any validation errors
+    nameError.value = '';
+    emailError.value = '';
+    offerError.value = '';
+    descriptionError.value = '';
+
   } catch (error) {
     error.value = true;
     setTimeout(() => {
       error.value = false;
-    }, 3000)
+    }, 3000);
   }
 }
 
@@ -58,7 +147,17 @@ const handleOfferChange = (event: Event) => {
   } else {
     offer.value = offer.value.filter(item => item !== target.value);
   }
+
+  // Clear validation error when user selects an option
+  if (offer.value.length > 0) {
+    offerError.value = '';
+  }
 }
+
+// Real-time validation on blur
+const handleNameBlur = () => validateName();
+const handleEmailBlur = () => validateEmail();
+const handleDescriptionBlur = () => validateDescription();
 </script>
 
 <template>
@@ -73,10 +172,12 @@ const handleOfferChange = (event: Event) => {
           <div class="input-container">
             <input
                 class="montserrat-s16 montserrat-s16-n500 input"
+                :class="{ 'input-error': nameError }"
                 type="text"
-                placeholder="Full name*"
                 required
+                placeholder="Full name*"
                 v-model="name"
+                @blur="handleNameBlur"
             >
           </div>
           <div class="input-container">
@@ -91,14 +192,16 @@ const handleOfferChange = (event: Event) => {
         <div class="input-container">
           <input
               class="montserrat-s16 montserrat-s16-n500 input"
+              :class="{ 'input-error': emailError }"
               type="email"
-              placeholder="Your email*"
               required
+              placeholder="Your email*"
               v-model="email"
+              @blur="handleEmailBlur"
           >
         </div>
         <div class="input-container">
-          <label class="montserrat-s16 montserrat-s16-n500">What are you interested in* <span class="montserrat-s16 montserrat-s16-n400 sub-label">Multi-select</span></label>
+          <label class="montserrat-s16 montserrat-s16-n500">What are you interested in* <span v-if="offerError" class="error-message montserrat-s16 montserrat-s16-n400">{{ offerError }}</span><span v-else class="montserrat-s16 montserrat-s16-n400 sub-label">Multi-select</span></label>
           <div class="input-group">
             <label v-for="o in data.offers" :key="o" :for="o" class="label label-form">
               <input
@@ -128,10 +231,12 @@ const handleOfferChange = (event: Event) => {
         <div class="input-container">
           <textarea
               class="montserrat-s16 montserrat-s16-n500 input"
+              :class="{ 'input-error': descriptionError }"
+              required
               placeholder="Project description*"
               rows="5"
-              required
               v-model="description"
+              @blur="handleDescriptionBlur"
           ></textarea>
         </div>
         <div class="input-container">
@@ -160,7 +265,7 @@ const handleOfferChange = (event: Event) => {
             </a>
             <a target="_blank" href="https://www.tiktok.com/@jaronhaerens/">
               <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <path d="M20.2 10.1C20.2 10.32 20.02 10.501 19.8 10.49C18.6246 10.4311 17.4766 10.1135 16.438 9.56C16.157 9.41 15.8 9.605 15.8 9.924V15.5C15.7999 16.6696 15.458 17.8137 14.8163 18.7916C14.1745 19.7695 13.261 20.5385 12.188 21.004C11.115 21.4695 9.92931 21.6112 8.77681 21.4118C7.62431 21.2123 6.55524 20.6803 5.70108 19.8813C4.84693 19.0823 4.24494 18.051 3.96916 16.9144C3.69338 15.7777 3.75583 14.5852 4.14884 13.4836C4.54184 12.382 5.24827 11.4192 6.18122 10.7138C7.11417 10.0083 8.23296 9.59098 9.39999 9.513C9.45214 9.51024 9.50431 9.51826 9.55322 9.53656C9.60214 9.55486 9.64675 9.58305 9.68429 9.61937C9.72182 9.65568 9.75147 9.69934 9.77138 9.74763C9.79128 9.79591 9.80102 9.84778 9.79999 9.9V12.7C9.79999 12.92 9.61999 13.097 9.40199 13.133C8.95067 13.2089 8.53047 13.4122 8.19091 13.7191C7.85135 14.0259 7.6066 14.4234 7.48552 14.8648C7.36443 15.3061 7.37206 15.7729 7.50749 16.21C7.64293 16.6472 7.90053 17.0365 8.24993 17.3321C8.59933 17.6276 9.02596 17.8172 9.47951 17.8783C9.93306 17.9394 10.3946 17.8695 10.8098 17.677C11.225 17.4844 11.5764 17.1772 11.8227 16.7915C12.0691 16.4057 12.1999 15.9577 12.2 15.5V2.9C12.2 2.79391 12.2421 2.69217 12.3171 2.61716C12.3922 2.54214 12.4939 2.5 12.6 2.5H15.4C15.5069 2.50273 15.609 2.54522 15.6863 2.61919C15.7636 2.69315 15.8106 2.79328 15.818 2.9C15.9115 3.92472 16.3612 4.88426 17.0889 5.61177C17.8166 6.33928 18.7762 6.78874 19.801 6.882C20.021 6.902 20.201 7.079 20.201 7.3L20.2 10.1Z" stroke="#D4D9DD" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                <path d="M20.2 10.1C20.2 10.32 20.02 10.501 19.8 10.49C18.6246 10.4311 17.4766 10.1135 16.438 9.56C16.157 9.41 15.8 9.605 15.8 9.924V15.5C15.7999 16.6696 15.458 17.8137 14.8163 18.7916C14.1745 19.7695 13.261 20.5385 12.188 21.004C11.115 21.4695 9.92931 21.6112 8.77681 21.4118C7.62431 21.2123 6.55524 20.6803 5.70108 19.8813C4.84693 19.0823 4.24494 18.051 3.96916 16.9144C3.69338 15.7777 3.75583 14.5852 4.14884 13.4836C4.54184 12.382 5.24827 11.4192 6.18122 10.7138C7.11417 10.0083 8.23296 9.59098 9.39999 9.513C9.45214 9.51024 9.50431 9.51826 9.55322 9.53656C9.60214 9.55486 9.64675 9.58305 9.68429 9.61937C9.72182 9.65568 9.75147 9.69934 9.77138 9.74763C9.79128 9.79591 9.80102 9.84778 9.79999 9.9V12.7C9.79999 12.92 9.61999 13.097 9.40199 13.133C8.95067 13.2089 8.53047 13.4122 8.19091 13.7191C7.85135 14.0259 7.6066 14.4234 7.48552 14.8648C7.36443 15.3061 7.37206 15.7729 7.50749 16.21C7.64293 16.6472 7.90053 17.0365 8.24993 17.3321C8.59933 17.6276 9.02596 17.8172 9.47951 17.8783C9.93306 17.9394 10.3946 17.8695 10.8098 17.677C11.225 17.4844 11.5764 17.1772 11.8227 17.7915C12.0691 16.4057 12.1999 15.9577 12.2 15.5V2.9C12.2 2.79391 12.2421 2.69217 12.3171 2.61716C12.3922 2.54214 12.4939 2.5 12.6 2.5H15.4C15.5069 2.50273 15.609 2.54522 15.6863 2.61919C15.7636 2.69315 15.8106 2.79328 15.818 2.9C15.9115 3.92472 16.3612 4.88426 17.0889 5.61177C17.8166 6.33928 18.7762 6.78874 19.801 6.882C20.021 6.902 20.201 7.079 20.201 7.3L20.2 10.1Z" stroke="#D4D9DD" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
               </svg>
             </a>
           </div>
@@ -172,7 +277,7 @@ const handleOfferChange = (event: Event) => {
     <div class="toast-container">
       <transition name="toast">
         <div v-if="success" class="toast-success">
-          <p>Successfully informed Jaron about your project!</p>
+          <p>Email client opened! Please send the email to complete your request.</p>
         </div>
       </transition>
       <transition name="toast">
@@ -300,6 +405,17 @@ section#connect {
         .input {
           box-sizing: border-box;
           width: 100%;
+
+          &.input-error {
+            border: 2px solid #ef4444;
+            background-color: rgba(239, 68, 68, 0.1);
+          }
+        }
+
+        .error-message {
+          display: inline-block;
+          color: #ef4444;
+          margin-top: 0.25rem;
         }
 
         &:has(input:checked) {
