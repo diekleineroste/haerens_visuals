@@ -154,7 +154,6 @@ watch(started, (hasStarted) => {
 }
 
 .container-logo {
-  align-self: flex-start;
   transform: translateX(-120%);
   transform-origin: left center;
   will-change: transform;
@@ -195,10 +194,13 @@ watch(started, (hasStarted) => {
   .container-loading {
     gap: 5rem;
     padding: 2rem;
+    align-items: flex-start;
   }
 
   .container-logo {
-    transform: translateX(-100vw);
+    position: relative;
+    transform-origin: left center;
+    transform: translateX(calc(-120%));
 
     .logo {
       width: fit-content;
@@ -212,7 +214,6 @@ watch(started, (hasStarted) => {
 .container-loading.started {
   .container-logo {
     animation: slideInLeft 1.5s ease-in-out forwards;
-    -webkit-animation: slideInLeft 1.5s ease-in-out backwards;
   }
 
   .container-img {
