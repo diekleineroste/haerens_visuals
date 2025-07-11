@@ -1,34 +1,12 @@
 @import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&family=Playfair:ital,opsz,wght@0,5..1200,300..900;1,5..1200,300..900&display=swap');
 
-@property --primary {
-  syntax: "<color>";
-  inherits: false;
-  initial-value: #121E3E;
-}
-@property --black {
-  syntax: "<color>";
-  inherits: false;
-  initial-value: #05070E;
-}
-@property --gray-700 {
-  syntax: "<color>";
-  inherits: false;
-  initial-value: #3D3E42;
-}
-@property --gray-500 {
-  syntax: "<color>";
-  inherits: false;
-  initial-value: #6C7076;
-}
-@property --gray-300 {
-  syntax: "<color>";
-  inherits: false;
-  initial-value: #A8A7A4;
-}
-@property --white {
-  syntax: "<color>";
-  inherits: false;
-  initial-value: #D4D9DD;
+:root {
+  --primary: #121E3E;
+  --black: #05070E;
+  --gray-700: #3D3E42;
+  --gray-500: #6C7076;
+  --gray-300: #A8A7A4;
+  --white: #D4D9DD;
 }
 
 ::-moz-selection, ::selection {

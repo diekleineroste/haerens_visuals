@@ -133,7 +133,7 @@ const transformScroll = (event: WheelEvent) => {
   if (!event.deltaY) return;
 
   const target = event.currentTarget as HTMLElement;
-  target.scrollLeft += (event.deltaY * 2.5) + event.deltaX;
+  target.scrollLeft += (event.deltaY * 10) + event.deltaX;
   event.preventDefault();
 };
 
@@ -681,7 +681,7 @@ const navigateGallery = (direction: 'prev' | 'next') => {
           height: 80vh;
           max-width: 90vw;
           width: fit-content;
-          object-fit: contain;
+          object-fit: cover;
         }
       }
     }
