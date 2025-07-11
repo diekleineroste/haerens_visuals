@@ -204,7 +204,6 @@ watch(started, (hasStarted) => {
 
     .logo {
       width: fit-content;
-      max-width: unset;
       height: 15vh;
     }
   }
