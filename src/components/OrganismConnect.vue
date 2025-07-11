@@ -22,7 +22,7 @@ const handleSubmit = async (event: Event) => {
 
   try {
     const res = await EmailService.sendEmail({
-      to: 'laurensrousseau@gmail.com',
+      to: 'jaron@haerensvisuals.com',
       subject: 'WEB - ' + name.value,
       html: '<strong>'+ name.value + ' - ' + email.value + (telephone.value ? ' - ' + telephone.value : '') + '</strong>' +
           '<p>Budget: ' + budget.value + '</p>' +
