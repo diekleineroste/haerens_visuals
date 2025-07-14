@@ -199,7 +199,7 @@ const navigateGallery = (direction: 'prev' | 'next') => {
 
                 <div v-if="card?.video" class="label montserrat-s16-U400">video</div>
                 <div v-if="card?.photo" class="label montserrat-s16-U400">photo</div>
-                <div v-if="card?.graphic" class="label montserrat-s16-U400">graphic</div>
+                <div v-if="card?.graphic" class="label montserrat-s16-U400">graphics</div>
 
                 <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
                   <path d="M16 16C16 7.16344 8.83656 0 0 0H16V16Z" fill="var(--black)"/>
@@ -472,6 +472,15 @@ const navigateGallery = (direction: 'prev' | 'next') => {
       }
     }
 
+    #portfolio-top {
+      display: flex;
+      gap: .4rem;
+
+      span {
+        margin-top: -.4rem;
+      }
+    }
+
     #portfolio-bottom {
       display: flex;
       flex-direction: column;
@@ -522,6 +531,7 @@ const navigateGallery = (direction: 'prev' | 'next') => {
       position: relative;
       height: fit-content;
       width: 100%;
+      pointer-events: none;
 
       &.opacity {
         opacity: .3;
@@ -633,8 +643,12 @@ const navigateGallery = (direction: 'prev' | 'next') => {
           gap: 5vw;
 
           .portfolio-card {
-            max-height: unset;
-            width: unset;
+            max-height: none;
+            width: auto;
+
+            .card-img {
+              width: auto;
+            }
 
             .card-overlay {
               .container {

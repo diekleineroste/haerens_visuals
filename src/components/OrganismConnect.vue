@@ -67,15 +67,21 @@ const validateOffer = () => {
 }
 
 const validateDescription = () => {
+  const temp = description.value;
+  description.value = '';
+
   if (!description.value.trim()) {
     descriptionError.value = 'Project description is required';
+    description.value = temp;
     return false;
   }
   if (description.value.trim().length < 10) {
     descriptionError.value = 'Description must be at least 10 characters';
+    description.value = temp;
     return false;
   }
   descriptionError.value = '';
+  description.value = temp;
   return true;
 }
 
@@ -405,6 +411,8 @@ section#connect {
         .input {
           box-sizing: border-box;
           width: 100%;
+          -webkit-appearance: none;
+          appearance: none;
 
           &.input-error {
             border: 2px solid #ef4444;
