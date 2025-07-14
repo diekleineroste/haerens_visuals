@@ -72,7 +72,7 @@ onMounted(async () => {
 
 <style scoped lang="scss">
 header {
-  height: calc(95vh - 1.6rem);
+  height: calc(45vh - 1.6rem);
   display: flex;
   align-items: start;
   justify-content: center;
@@ -85,7 +85,7 @@ header {
     align-items: center;
     justify-content: center;
     width: 100%;
-    height: 90vh;
+    height: 40vh;
     background-position: center;
     background-size: cover;
     border-radius: 1rem;
