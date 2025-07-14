@@ -109,12 +109,10 @@ const validateForm = () => {
 const handleSubmit = async (event: Event) => {
   event.preventDefault();
 
-  // Validate form before submission
   if (!validateForm()) {
     return;
   }
 
-  // Since backend is not available, use mailto as fallback
   const subject = encodeURIComponent('WEB - ' + name.value);
   const body = encodeURIComponent(
       `Name: ${name.value}\n` +
@@ -130,13 +128,11 @@ const handleSubmit = async (event: Event) => {
   try {
     window.location.href = mailtoUrl;
 
-    // Show success message
     success.value = true;
     setTimeout(() => {
       success.value = false;
     }, 3000);
 
-    // Reset form after successful submission
     name.value = '';
     email.value = '';
     telephone.value = '';
@@ -144,7 +140,6 @@ const handleSubmit = async (event: Event) => {
     offer.value = [];
     description.value = '';
 
-    // Clear any validation errors
     nameError.value = '';
     emailError.value = '';
     offerError.value = '';
@@ -166,7 +161,6 @@ const handleOfferChange = (event: Event) => {
     offer.value = offer.value.filter(item => item !== target.value);
   }
 
-  // Clear validation error when user selects an option
   if (offer.value.length > 0) {
     offerError.value = '';
   }
@@ -176,6 +170,7 @@ const handleOfferChange = (event: Event) => {
 const handleNameBlur = () => validateName();
 const handleEmailBlur = () => validateEmail();
 const handleDescriptionBlur = () => validateDescription();
+const handleDescriptionFocus = () => {setTimeout(forceTextareaRepaint, 0)};
 </script>
 
 <template>
@@ -254,6 +249,7 @@ const handleDescriptionBlur = () => validateDescription();
               placeholder="Project description*"
               rows="5"
               v-model="description"
+              @focus="handleDescriptionFocus"
               @blur="handleDescriptionBlur"
           ></textarea>
         </div>
