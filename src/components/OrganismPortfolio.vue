@@ -645,9 +645,11 @@ const navigateGallery = (direction: 'prev' | 'next') => {
           .portfolio-card {
             max-height: none;
             width: auto;
+            min-width: auto;
 
             .card-img {
               width: auto;
+              min-width: 20rem;
             }
 
             .card-overlay {

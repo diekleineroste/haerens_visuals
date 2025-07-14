@@ -30,6 +30,18 @@ const text = computed(() => {
 // Email validation regex
 const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
+// Safari textarea repaint fix
+const forceTextareaRepaint = () => {
+  const textarea = document.querySelector('textarea') as HTMLTextAreaElement;
+  if (textarea) {
+    const originalHeight = textarea.style.height;
+    textarea.style.height = `${textarea.offsetHeight + 1}px`;
+    setTimeout(() => {
+      textarea.style.height = originalHeight || 'auto';
+    }, 0);
+  }
+};
+
 // Validation functions
 const validateName = () => {
   if (!name.value.trim()) {
@@ -67,21 +79,21 @@ const validateOffer = () => {
 }
 
 const validateDescription = () => {
-  const temp = description.value;
-  description.value = '';
+  const wasInvalid = !!descriptionError.value;
 
   if (!description.value.trim()) {
     descriptionError.value = 'Project description is required';
-    description.value = temp;
+    if (!wasInvalid) {
+      setTimeout(forceTextareaRepaint, 0);
+    }
     return false;
   }
-  if (description.value.trim().length < 10) {
-    descriptionError.value = 'Description must be at least 10 characters';
-    description.value = temp;
-    return false;
+
+  if (wasInvalid) {
+    descriptionError.value = '';
+    setTimeout(forceTextareaRepaint, 0);
   }
-  descriptionError.value = '';
-  description.value = temp;
+
   return true;
 }
 
