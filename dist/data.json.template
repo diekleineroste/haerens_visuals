@@ -14,7 +14,6 @@
       "photo": false,
       "graphic": true,
       "fileName": "MAIN_PROJECT_IMAGE_OR_VIDEO.png",
-      "aspectRatio" : "3/2",
       "isVideo": false,
       "gallery": [
         {
@@ -37,7 +36,6 @@
       "photo": true,
       "graphic": false,
       "fileName": "SECOND_PROJECT_MAIN_FILE.mp4",
-      "aspectRatio" : "10/16",
       "isVideo": true,
       "gallery": [
         {
