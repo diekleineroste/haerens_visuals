@@ -47,6 +47,11 @@
             "description": "Main project file name",
             "pattern": "\\.(png|jpg|jpeg|gif|webp|mp4|mov|avi)$"
           },
+          "aspectRatio": {
+            "type": "string",
+            "description": "Aspect ratio of the file",
+            "pattern": "^\\d+/\\d+$"
+          },
           "isVideo": {
             "type": "boolean",
             "description": "Whether the main file is a video"

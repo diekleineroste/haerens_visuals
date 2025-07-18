@@ -9,66 +9,68 @@
       "video": true,
       "photo": true,
       "graphic": true,
-      "fileName": "car1.png",
+      "fileName": "car4.png",
       "isVideo": false,
+      "aspectRatio": "1/1",
       "gallery": [
         {
-          "isVideo": false,
-          "fileName": "car1.png"
+          "fileName": "car1.png",
+          "isVideo": false
         },
         {
-          "isVideo": false,
-          "fileName": "car3.png"
+          "fileName": "car3.png",
+          "isVideo": false
         },
         {
-          "isVideo": false,
-          "fileName": "car2.png"
+          "fileName": "car2.png",
+          "isVideo": false
         },
         {
-          "isVideo": false,
-          "fileName": "car4.png"
+          "fileName": "car4.png",
+          "isVideo": false
         },
         {
-          "isVideo": false,
-          "fileName": "jh.png"
+          "fileName": "jh.png",
+          "isVideo": false
         },
         {
-          "isVideo": false,
-          "fileName": "jh_profile.png"
+          "fileName": "jh_profile.png",
+          "isVideo": false
         }
       ]
     },
     {
-      "title": "Dikke balzak jens",
+      "title": "Test jens",
       "video": true,
       "photo": false,
       "graphic": false,
-      "fileName": "video2.mp4",
-      "isVideo": true,
+      "fileName": "car4.png",
+      "aspectRatio": "16/10",
+      "isVideo": false,
       "gallery": [
         {
-          "isVideo": false,
-          "fileName": "car1.png"
+          "fileName": "car1.png",
+          "isVideo": false
         },
         {
-          "isVideo": false,
-          "fileName": "car3.png"
+          "fileName": "car3.png",
+          "isVideo": false
         },
         {
-          "isVideo": false,
-          "fileName": "car2.png"
+          "fileName": "car2.png",
+          "isVideo": false
         },
         {
-          "isVideo": false,
-          "fileName": "car4.png"
+          "fileName": "car4.png",
+          "isVideo": false
         },
         {
-          "isVideo": false,
-          "fileName": "jh.png"
+          "fileName": "jh.png",
+          "isVideo": false
         },
         {
-          "isVideo": false,
-          "fileName": "jh_profile.png"
+          "fileName": "jh_profile.png",
+          "isVideo": false
         }
       ]
     },
@@ -78,31 +80,32 @@
       "photo": false,
       "graphic": true,
       "fileName": "car4.png",
+      "aspectRatio": "4/5",
       "isVideo": false,
       "gallery": [
         {
-          "isVideo": false,
-          "fileName": "car1.png"
+          "fileName": "car1.png",
+          "isVideo": false
         },
         {
-          "isVideo": false,
-          "fileName": "car3.png"
+          "fileName": "car3.png",
+          "isVideo": false
         },
         {
-          "isVideo": false,
-          "fileName": "car2.png"
+          "fileName": "car2.png",
+          "isVideo": false
         },
         {
-          "isVideo": false,
-          "fileName": "car4.png"
+          "fileName": "car4.png",
+          "isVideo": false
         },
         {
-          "isVideo": false,
-          "fileName": "jh.png"
+          "fileName": "jh.png",
+          "isVideo": false
         },
         {
-          "isVideo": false,
-          "fileName": "jh_profile.png"
+          "fileName": "jh_profile.png",
+          "isVideo": false
         }
       ]
     },
@@ -112,31 +115,32 @@
       "photo": false,
       "graphic": false,
       "fileName": "car2.png",
+      "aspectRatio": "4/5",
       "isVideo": false,
       "gallery": [
         {
-          "isVideo": false,
-          "fileName": "car1.png"
+          "fileName": "car1.png",
+          "isVideo": false
         },
         {
-          "isVideo": false,
-          "fileName": "car3.png"
+          "fileName": "car3.png",
+          "isVideo": false
         },
         {
-          "isVideo": false,
-          "fileName": "car2.png"
+          "fileName": "car2.png",
+          "isVideo": false
         },
         {
-          "isVideo": false,
-          "fileName": "car4.png"
+          "fileName": "car4.png",
+          "isVideo": false
         },
         {
-          "isVideo": false,
-          "fileName": "jh.png"
+          "fileName": "jh.png",
+          "isVideo": false
         },
         {
-          "isVideo": false,
-          "fileName": "jh_profile.png"
+          "fileName": "jh_profile.png",
+          "isVideo": false
         }
       ]
     },
@@ -146,31 +150,32 @@
       "photo": true,
       "graphic": false,
       "fileName": "video.mp4",
+      "aspectRatio": "9/16",
       "isVideo": true,
       "gallery": [
         {
-          "isVideo": false,
-          "fileName": "car1.png"
+          "fileName": "car1.png",
+          "isVideo": false
         },
         {
-          "isVideo": false,
-          "fileName": "car3.png"
+          "fileName": "car3.png",
+          "isVideo": false
         },
         {
-          "isVideo": false,
-          "fileName": "car2.png"
+          "fileName": "car2.png",
+          "isVideo": false
         },
         {
-          "isVideo": false,
-          "fileName": "car4.png"
+          "fileName": "car4.png",
+          "isVideo": false
         },
         {
-          "isVideo": false,
-          "fileName": "jh.png"
+          "fileName": "jh.png",
+          "isVideo": false
         },
         {
-          "isVideo": false,
-          "fileName": "jh_profile.png"
+          "fileName": "jh_profile.png",
+          "isVideo": false
         }
       ]
     }

@@ -11,6 +11,7 @@ Beneath is some valuable info for editing the data.json file and setting up the 
 - `photo`: Boolean - Whether this project includes photography*
 - `graphic`: Boolean - Whether this project includes graphic design*
 - `fileName`: String - Main image/video file for the project
+- `aspectRatio`: String - Aspect ratio of the main file, always 2 numbers seperated with `/` (ex. `3/2`)
 - `isVideo`: Boolean - Whether the main file is a video*
 - `gallery`: Array - Additional images/videos for the project<br>
 <sub>* yes = `true`| no = `false`</sub>

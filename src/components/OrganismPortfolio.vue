@@ -31,20 +31,70 @@ onBeforeMount(() => {
   isLargeScreen.value = mediaQuery.matches;
 })
 
-const sectionHeight = computed(() =>
-    props.data.length ? `${props.data.length * viewportSize.value}vh` : '0vh'
+const normalizeAspectRatio = (aspectRatio: string) => {
+  const ratios = aspectRatio.split('/')
+  return +ratios[0] / +ratios[1]
+}
+
+const sectionHeight = ref(0);
+const windowSize = ref({ width: 0, height: 0 });
+
+// Function to calculate section height
+const calculateSectionHeight = () => {
+  if (!stickyViewRef.value || !props.data.length) {
+    sectionHeight.value = 0;
+    return;
+  }
+
+  let height = 0;
+  const oneViewWidth = window.innerWidth / 100;
+  const oneViewHeight = window.innerHeight / 100;
+  const subWidth = stickyViewRef.value.children[1].scrollWidth;
+  const subHeight = stickyViewRef.value.children[1].children[0].scrollHeight;
+
+  props.data.forEach(item => {
+    console.log(subWidth / normalizeAspectRatio(item.aspectRatio))
+    console.log(normalizeAspectRatio(item.aspectRatio))
+    height += ((isLargeScreen.value? subHeight * normalizeAspectRatio(item.aspectRatio) : subWidth / normalizeAspectRatio(item.aspectRatio))) + (16 * 4);
+  });
+
+  sectionHeight.value = height / (isLargeScreen.value ? oneViewWidth : oneViewHeight);
+};
+
+// Handle window resize
+const handleResize = () => {
+  windowSize.value = {
+    width: window.innerWidth,
+    height: window.innerHeight
+  };
+
+  // Use nextTick to ensure DOM has updated before recalculating
+  nextTick(() => {
+    calculateSectionHeight();
+  });
+};
+
+// Watch for changes and recalculate
+watch(
+    [() => props.data, stickyViewRef, isLargeScreen, windowSize],
+    () => {
+      nextTick(() => {
+        calculateSectionHeight();
+      });
+    },
+    { immediate: true, deep: true }
 );
 
 const scroll = computed(() =>
     props.data.length
         ? isLargeScreen.value
-            ? `calc(${props.data.length * viewportSize.value}vw - 4rem)`
-            : `${props.data.length * viewportSize.value}vh`
+            ? `calc(${sectionHeight.value}vw - 4rem)`
+            : `${sectionHeight.value}vh`
         : '0vw'
 );
 
 const maxScrollValue = computed(() =>
-    props.data.length ? (props.data.length * viewportSize.value) - 100 : 0
+    props.data.length ? (sectionHeight.value) - 100 : 0
 );
 
 const transformStyle = computed(() => {
@@ -149,8 +199,15 @@ watch(() => galleryState.value.currentIdx, (newIdx) => {
 
 onMounted(() => {
   nextTick(() => {
+    windowSize.value = {
+      width: window.innerWidth,
+      height: window.innerHeight
+    };
+
     mediaQuery.addEventListener('change', handleMediaChange);
     window.addEventListener('scroll', handleScroll, { passive: true });
+    window.addEventListener('resize', handleResize);
+    console.log('height', sectionHeight.value);
   });
 });
 
@@ -159,7 +216,7 @@ onUnmounted(() => {
     mediaQuery.removeEventListener('change', handleMediaChange);
   }
   window.removeEventListener('scroll', handleScroll);
-
+  window.removeEventListener('resize', handleResize);
   if (rafId !== null) {
     cancelAnimationFrame(rafId);
   }
@@ -178,7 +235,7 @@ const navigateGallery = (direction: 'prev' | 'next') => {
 </script>
 
 <template>
-  <section id="portfolio" class="sticky-parent" :style="{ height: sectionHeight }">
+  <section id="portfolio" class="sticky-parent" :style="{ height: sectionHeight + 'vh' }">
     <div ref="stickyViewRef" class="sticky-view">
       <h2 id="portfolio-top" class="montserrat-s24 montserrat-s24-U500">
         let your <span class="playfair playfair-s40 playfair-s40-i400">vision</span>
@@ -187,8 +244,8 @@ const navigateGallery = (direction: 'prev' | 'next') => {
       <div class="hybrid-scroll-parent">
         <div id="portfolio-cards" class="hybrid-scroll" :style="[transformStyle, !isLargeScreen ? { top: scrollValue + '%' } : {}]">
           <div v-for="(card, idx) in data" :key="`card-${idx}`" class="portfolio-card" @click="showGallery(card, idx)">
-            <img v-if="!card.isVideo" :src="getAssetPath(card.fileName)" :alt="card.title" class="card-img" loading="lazy">
-            <video v-else :src="getAssetPath(card.fileName)" autoplay loop preload="metadata" muted class="card-img">
+            <img v-if="!card.isVideo" :src="getAssetPath(card.fileName)" :alt="card.title" class="card-img" :style="{aspectRatio: card.aspectRatio}" loading="lazy">
+            <video v-else :src="getAssetPath(card.fileName)" autoplay loop preload="metadata" muted class="card-img" :style="{aspectRatio: card.aspectRatio}">
             </video>
 
             <div class="card-overlay">
@@ -384,7 +441,6 @@ const navigateGallery = (direction: 'prev' | 'next') => {
 
         .portfolio-card {
           position: relative;
-          height: 100%;
           max-height: fit-content;
           width: 100%;
           min-width: 20rem;
@@ -631,7 +687,7 @@ const navigateGallery = (direction: 'prev' | 'next') => {
   .sticky-parent {
     .sticky-view {
       top: 2rem;
-      gap: 4rem;
+      gap: 5vh;
       padding: 0 2rem;
 
       .hybrid-scroll-parent {
@@ -640,15 +696,15 @@ const navigateGallery = (direction: 'prev' | 'next') => {
         .hybrid-scroll {
           top: 0;
           flex-direction: row;
-          gap: 5vw;
+          gap: 4rem;
 
           .portfolio-card {
             max-height: none;
+            height: 100%;
             width: auto;
-            min-width: auto;
 
             .card-img {
-              width: auto;
+              width: 100%;
               min-width: 20rem;
             }
 
@@ -669,6 +725,7 @@ const navigateGallery = (direction: 'prev' | 'next') => {
         }
 
         p {
+          padding-top: 1rem;
           align-self: unset;
           text-align: left;
         }

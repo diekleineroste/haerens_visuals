@@ -8,6 +8,7 @@ interface PortfolioCard {
     photo: boolean;
     graphic: boolean;
     fileName: string;
+    aspectRatio: string;
     isVideo: boolean;
     gallery: GalleryItem[];
 }
