@@ -9,10 +9,6 @@ const props = defineProps<{
 const LARGE_SCREEN_BREAKPOINT = '(min-width: 55rem)';
 
 const isLargeScreen = ref(false);
-const viewportSize = computed(() => {
-  return isLargeScreen.value ? 40 : 60
-})
-    // ref(isLargeScreen.value ? 40 : 60);
 const stickyViewRef = ref<HTMLElement>();
 const scrollValue = ref(0);
 const galleryState = ref({
@@ -39,7 +35,6 @@ const normalizeAspectRatio = (aspectRatio: string) => {
 const sectionHeight = ref(0);
 const windowSize = ref({ width: 0, height: 0 });
 
-// Function to calculate section height
 const calculateSectionHeight = () => {
   if (!stickyViewRef.value || !props.data.length) {
     sectionHeight.value = 0;
@@ -61,20 +56,17 @@ const calculateSectionHeight = () => {
   sectionHeight.value = height / (isLargeScreen.value ? oneViewWidth : oneViewHeight);
 };
 
-// Handle window resize
 const handleResize = () => {
   windowSize.value = {
     width: window.innerWidth,
     height: window.innerHeight
   };
 
-  // Use nextTick to ensure DOM has updated before recalculating
   nextTick(() => {
     calculateSectionHeight();
   });
 };
 
-// Watch for changes and recalculate
 watch(
     [() => props.data, stickyViewRef, isLargeScreen, windowSize],
     () => {
@@ -243,7 +235,7 @@ const navigateGallery = (direction: 'prev' | 'next') => {
 
       <div class="hybrid-scroll-parent">
         <div id="portfolio-cards" class="hybrid-scroll" :style="[transformStyle, !isLargeScreen ? { top: scrollValue + '%' } : {}]">
-          <div v-for="(card, idx) in data" :key="`card-${idx}`" class="portfolio-card" @click="showGallery(card, idx)">
+          <div :id="`card-${idx}`" v-for="(card, idx) in data" :key="`card-${idx}`" class="portfolio-card" @click="showGallery(card, idx)">
             <img v-if="!card.isVideo" :src="getAssetPath(card.fileName)" :alt="card.title" class="card-img" :style="{aspectRatio: card.aspectRatio}" loading="lazy">
             <video v-else :src="getAssetPath(card.fileName)" autoplay loop preload="metadata" muted class="card-img" :style="{aspectRatio: card.aspectRatio}">
             </video>
@@ -280,13 +272,18 @@ const navigateGallery = (direction: 'prev' | 'next') => {
       </div>
 
       <div id="portfolio-bottom">
+        <p class="montserrat-s16 montserrat-s16-n300">tap to view gallery</p>
         <h2 class="montserrat-s24 montserrat-s24-U500">
           come to <span class="playfair playfair-s40 playfair-s40-i400">life</span>
         </h2>
         <p>
-          I craft extraordinary experiences through visionary design and meticulous execution.
-          Every project is a bespoke collaboration where your unique vision becomes reality.
-          Discover the possibilities – let's create something remarkable together.
+          I build <span class="montserrat montserrat-s16 montserrat-s16-i800">EXPERIENCERS</span>
+          trough <span class="montserrat montserrat-s16 montserrat-s16-i800">visionary design</span>
+          and relentless execution.
+          every project is a <span class="montserrat montserrat-s16 montserrat-s16-i800">sharp</span>,
+          tailored collaboration.
+          <span class="montserrat montserrat-s16 montserrat-s16-i800">your vision</span>, realized
+          <br>// made to stand out.
         </p>
       </div>
     </div>
@@ -418,7 +415,7 @@ const navigateGallery = (direction: 'prev' | 'next') => {
     flex-direction: column;
     gap: 1rem;
     justify-content: space-between;
-    height: calc(100vh - 4rem);
+    height: calc(100vh - 2.4rem);
     padding: 0 .8rem;
     overflow: hidden;
 
@@ -538,10 +535,12 @@ const navigateGallery = (direction: 'prev' | 'next') => {
     }
 
     #portfolio-bottom {
+      position: relative;
       display: flex;
       flex-direction: column;
       justify-content: space-between;
-      gap: 2rem;
+      gap: 1.6rem;
+      padding-top: 1.6rem;
 
       h2 {
         align-self: flex-end;
@@ -551,6 +550,12 @@ const navigateGallery = (direction: 'prev' | 'next') => {
         align-self: center;
         text-align: center;
         max-width: 27rem;
+      }
+
+      p:first-of-type {
+        position: absolute;
+        top: 0;
+        color: var(--gray-500);
       }
     }
   }
@@ -588,12 +593,14 @@ const navigateGallery = (direction: 'prev' | 'next') => {
       height: fit-content;
       width: 100%;
       pointer-events: none;
+      user-select: none;
 
       &.opacity {
         opacity: .3;
         height: 10rem;
         cursor: pointer;
         transition: opacity 0.3s ease;
+        pointer-events: all;
 
         &:hover {
           opacity: 0.6;
@@ -687,7 +694,8 @@ const navigateGallery = (direction: 'prev' | 'next') => {
   .sticky-parent {
     .sticky-view {
       top: 2rem;
-      gap: 5vh;
+      gap: 3vh;
+      height: calc(100vh - 4rem);
       padding: 0 2rem;
 
       .hybrid-scroll-parent {
@@ -710,7 +718,7 @@ const navigateGallery = (direction: 'prev' | 'next') => {
 
             .card-overlay {
               .container {
-                padding: 1rem;
+                padding: 2vh;
               }
             }
           }
@@ -728,6 +736,10 @@ const navigateGallery = (direction: 'prev' | 'next') => {
           padding-top: 1rem;
           align-self: unset;
           text-align: left;
+        }
+
+        p:first-of-type {
+          display: none;
         }
       }
     }

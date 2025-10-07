@@ -177,7 +177,16 @@ const handleDescriptionFocus = () => {setTimeout(forceTextareaRepaint, 0)};
   <section id="connect">
     <div class="container container-title">
       <h2 class="montserrat-s24 montserrat-s24-U500">get in touch</h2>
-      <p>Ready to turn your vision into captivating visuals? Feel free to reach out — I'm here to transform your ideas into unforgettable moments.</p>
+      <p>
+        got a <span class="montserrat montserrat-s16 montserrat-s16-i800">VISION</span>?
+        let's turn it into fire.
+        no templates. no <span class="montserrat montserrat-s16 montserrat-s16-i800">LIMITS</span>.
+        just unforgettable <span class="montserrat montserrat-s16 montserrat-s16-i800">VISUALS</span>
+        build from your ideas
+        and fueled by my obsession
+        with making <span class="montserrat montserrat-s16 montserrat-s16-i800">EVERY FRAME HIT</span>.
+        <br>// reach out or get left behind.
+      </p>
     </div>
     <div class="layout-container">
       <form class="container container-form" @submit.prevent="handleSubmit">
@@ -261,7 +270,6 @@ const handleDescriptionFocus = () => {setTimeout(forceTextareaRepaint, 0)};
       <div class="container container-info">
         <img :src="`./assets/${data.fileName}`" alt="Picture of Jaron Haerens">
         <div>
-          <p>Feel free to drop me a line! Whether you have a specific project in mind or just want to say hello, I'm all ears.</p>
           <a href="sms:+32468183344">(+32) 468 18 33 44</a>
           <a href="mailto:jaron@haerensvisuals.com?subject=Website contact">jaron@haerensvisuals.com</a>
           <div class="socials-container">
@@ -314,7 +322,7 @@ section#connect {
   .layout-container {
     display: flex;
     flex-direction: column;
-    gap: 4rem;
+    gap: 2rem;
     width: 100%;
 
     .container {
@@ -330,7 +338,7 @@ section#connect {
 
     &-title {
       align-items: flex-start;
-      max-width: 31rem;
+      max-width: 36rem;
       text-align: left;
       gap: 2rem;
     }
@@ -340,7 +348,7 @@ section#connect {
       flex-direction: column;
       align-items: center;
       justify-content: center;
-      gap: 4rem;
+      gap: 2rem;
 
       img {
         display: none;
@@ -523,12 +531,12 @@ section#connect {
       &-info {
         img {
           display: block;
-          max-height: 17rem;
+          height: 100%;
           border-radius: .5rem;
         }
 
         div {
-          align-items: center;
+          align-items: flex-start;
           align-self: unset;
 
           p {

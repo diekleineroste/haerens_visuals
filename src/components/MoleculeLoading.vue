@@ -2,7 +2,6 @@
 import AtomLogo from "@/components/AtomLogo.vue"
 import { ref, computed, onMounted, watch } from "vue";
 
-// Minimal state - let CSS handle the timing
 const animatedCoords = ref({
   longitude: { degree: 0, min: 0, sec: 0, secDec: 0 },
   latitude: { degree: 0, min: 0, sec: 0, secDec: 0 }
@@ -12,7 +11,6 @@ const started = ref(false);
 const visible = ref(true);
 const animationComplete = ref(false);
 
-// Target coordinates
 const TARGET_COORDINATES = {
   longitude: { degree: 51, min: 0, sec: 57, secDec: 9 },
   latitude: { degree: 3, min: 44, sec: 1, secDec: 8 }

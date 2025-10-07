@@ -37,12 +37,12 @@ onMounted(async () => {
         <AtomLogo :border="true" class="logo"/>
       </div>
       <p class="introductory-text">
-        i craft striking <span class="montserrat montserrat-s16 montserrat-s16-i800">VISUALS</span><br>
-        and powerful <span class="montserrat montserrat-s16 montserrat-s16-i800">CONTENT</span><br>
+        I craft powerful <span class="montserrat montserrat-s16 montserrat-s16-i800">CONTENT</span><br>
+        combined with striking <span class="montserrat montserrat-s16 montserrat-s16-i800">VISUALS</span><br>
         for <span class="montserrat montserrat-s16 montserrat-s16-i800">TEAMS</span>, <span class="montserrat montserrat-s16 montserrat-s16-i800">ATHLETES</span> and <span class="montserrat montserrat-s16 montserrat-s16-i800">BRANDS</span><br>
-        who move fast, push limits, and demand excellence.<br>
-        every frame, every story, every moment<br>
-        - built to <span class="montserrat montserrat-s16 montserrat-s16-i800">inspire</span>.<br>
+        who move fast,<br> push limits, and demand<br> excellence.<br>
+        every frame, every story, every <span class="montserrat montserrat-s16 montserrat-s16-i800">MOMENT</span><br>
+        // built to inspire.<br>
         based in ghent, creating for the world.<br>
       </p>
       <p class="display-left montserrat-s16-U700">
@@ -85,7 +85,7 @@ header {
     align-items: center;
     justify-content: center;
     width: 100%;
-    height: 40vh;
+    height: 100%;
     background-position: center;
     background-size: cover;
     border-radius: 1rem;
@@ -153,11 +153,12 @@ header {
 }
 
 main {
+  padding-top: 2rem;
   background: var(--black);
 }
 
 footer {
-  height: 8rem;
+  height: 4rem;
   background: var(--black);
 
   div {
@@ -216,6 +217,10 @@ footer {
       padding: 0 2rem;
       margin-bottom: 8rem;
     }
+  }
+
+  footer {
+    height: 6rem;
   }
 }
 </style>
