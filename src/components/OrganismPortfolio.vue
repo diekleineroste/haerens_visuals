@@ -277,8 +277,8 @@ const navigateGallery = (direction: 'prev' | 'next') => {
           come to <span class="playfair playfair-s40 playfair-s40-i400">life</span>
         </h2>
         <p>
-          I build <span class="montserrat montserrat-s16 montserrat-s16-i800">EXPERIENCERS</span>
-          trough <span class="montserrat montserrat-s16 montserrat-s16-i800">visionary design</span>
+          I build <span class="montserrat montserrat-s16 montserrat-s16-i800">EXPERIENCES</span>
+          through <span class="montserrat montserrat-s16 montserrat-s16-i800">visionary design</span>
           and relentless execution.
           every project is a <span class="montserrat montserrat-s16 montserrat-s16-i800">sharp</span>,
           tailored collaboration.

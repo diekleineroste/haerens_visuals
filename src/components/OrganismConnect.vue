@@ -536,7 +536,7 @@ section#connect {
         }
 
         div {
-          align-items: flex-start;
+          align-items: center;
           align-self: unset;
 
           p {
